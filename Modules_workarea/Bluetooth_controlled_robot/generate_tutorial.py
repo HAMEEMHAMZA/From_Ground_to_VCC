@@ -70,7 +70,6 @@ while(len(data_rem) > 0):
             print(e)
             heading_string = ''
         print("heading_string = ", heading_string)
-        heading_string = heading_string.replace('_', '\_')#in latex undescore needs to be \_
         data_rem = data_rem[heading_end_index+1:]
         #print(data_rem)
         if heading_rank == 1:
@@ -80,7 +79,6 @@ while(len(data_rem) > 0):
             if hash_start_index != 0:
                 heading_end_index = data_rem.find("\n", 1)
                 sub_title_string = data_rem[0:heading_end_index]
-                sub_title_string = sub_title_string.replace('_', '\_')#in latex undescore needs to be \_
                 print("sub_title_string =<", sub_title_string, '>')
                 data_rem = data_rem[heading_end_index+1:]
             out1 += str(r"\huge \textbf{ " )
@@ -123,7 +121,7 @@ while(len(data_rem) > 0):
             print("table path = <", table_path,">")
             data_rem = data_rem[heading_end_index:]
             #read table
-            table_inst = pd.read_csv(table_path, header=None, dtype=str, na_filter = False)
+            table_inst = pd.read_csv(table_path, header=None)
             table_data = table_inst.values
             num_rows = np.shape(table_data)[0]
             num_columns = np.shape(table_data)[1]
@@ -133,7 +131,6 @@ while(len(data_rem) > 0):
             out1 += str(r"\begin{center}")
             out1 += str('\n')
             out1+= str(r"\caption{")
-            table_caption = table_caption.replace('_', '\_')#in latex undescore needs to be \_
             out1+= table_caption
             out1+= str(r"}")
             out1 += str('\n')
@@ -154,9 +151,7 @@ while(len(data_rem) > 0):
             #add titles
             for i in range(num_columns):
                 out1 += str(r"\textbf{")
-                temp_string = str(table_data[0,i])
-                temp_string = temp_string.replace('_', '\_')#in latex undescore needs to be \_
-                out1 += temp_string
+                out1 += str(table_data[0,i])
                 out1 += str(r"}")
                 if (i != (num_columns-1)):
                     out1 += ' & '
@@ -165,12 +160,9 @@ while(len(data_rem) > 0):
             out1 += str('\n')
             out1 += str(r"\hline")
             out1 += str('\n')
-            #add data
             for i in range(num_rows-1):
                 for j in range(num_columns):
-                    temp_string = str(table_data[i+1,j])
-                    temp_string = temp_string.replace('_', '\_')#in latex undescore needs to be \_
-                    out1 += temp_string
+                    out1 += str(table_data[i+1,j])
                     if (j != (num_columns-1)):
                         out1 += ' & '
                     else:
@@ -204,7 +196,6 @@ while(len(data_rem) > 0):
             out1 += figure_path + '}'
             out1 += str('\n')
             out1 += str(r"\caption{")
-            figure_caption = figure_caption.replace('_','\_')#in latex undescore needs to be \_
             out1 += figure_caption + '.}'
             out1 += str('\n')
             out1 += str(r"\label{")
@@ -217,7 +208,6 @@ while(len(data_rem) > 0):
     else:#NORMAL TEXT
         print("some text in between")
         text = data_rem[0:hash_start_index-1]
-        text = text.replace('_', '\_')#in latex undescore needs to be \_
         print("text= <", text,'>')
         data_rem = data_rem[hash_start_index:]
         #print("data remaining below")

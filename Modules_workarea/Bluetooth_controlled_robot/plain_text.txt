@@ -1,0 +1,13 @@
+#&#Smartphone Bluetooth controlled robot
+Implemented using Arduino and HC-05 Bluetooth module
+
+#&&#Introduction
+Bluetooth is among the top of all commonly used wireless communication standards. Here we describe the working and building of a 4 wheeled robot controlled using a smartphone bluetooth.
+
+
+#&&#Items required
+#table "items required" items_required.csv
+
+Following thing is a mosfet
+
+#figure "MOSFET" MOSFET.jpg
